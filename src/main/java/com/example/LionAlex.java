@@ -8,6 +8,7 @@ public class LionAlex extends Lion {
 
     private final Set<String> startFriends = Set.of("Марти", "Глория", "Мелман");
     private final List<String> friendsList = new ArrayList<>(startFriends);
+    private String placeOfLiving = "Нью-Йоркский Зоопарк";
 
     LionAlex(Feline feline) throws Exception {
         super("Cамец", feline);
@@ -31,5 +32,13 @@ public class LionAlex extends Lion {
             throw new Exception(String.format("Алекс никогда не перестанет дружить с %s!", friend));
         }
         friendsList.remove(friend);
+    }
+
+    public String getPlaceOfLiving() {
+        return placeOfLiving;
+    }
+
+    public void setPlaceOfLiving(String newPlaceOfLiving) {
+        placeOfLiving = newPlaceOfLiving;
     }
 }
