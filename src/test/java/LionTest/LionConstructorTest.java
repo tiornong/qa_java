@@ -7,20 +7,21 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.Mockito;
 
 
 @RunWith(Parameterized.class)
 public class LionConstructorTest {
 
     String sex;
-    boolean correctParameter;
+    boolean isValid;
 
     public LionConstructorTest(String sex, boolean correctParameter) {
         this.sex = sex;
-        this.correctParameter = correctParameter;
+        this.isValid = correctParameter;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "{index}: testSex({0}) isValid={1}")
     public static Object[][] testData() {
         return new Object[][]{
                 {"самец", true},
@@ -45,12 +46,30 @@ public class LionConstructorTest {
     }
 
     @Test
-    public void test() throws Exception {
-        Feline feline = new Feline(); // заменить на мок?
-        try {
-            Lion lion = new Lion(sex, feline);
-        } catch (Exception e) {
-            Assert.assertEquals("Используйте допустимые значения пола животного - самец/male или самка/female", e.getMessage());
+    public void lionConstructorTest(){
+        Feline felineMock = Mockito.mock(Feline.class);
+
+        // Если вариант названия поля валиден, то проверяем, что объект создался
+        if (isValid) {
+            try {
+                Lion lion = new Lion(sex, felineMock);
+                Assert.assertNotNull(lion);
+            } catch (Exception e) {
+                Assert.fail(e.getMessage());
+            }
+        // Если не валиден, то проверяем, что вызвалась соотв. ошибка
+        } else {
+            try {
+                Lion lion = new Lion(sex, felineMock);
+                Assert.fail("Ошибка не произошла, хотя должна была");
+            } catch (Exception e) {
+                Assert.assertEquals(
+                        "Сообщение исключения не соответствует ожидаемому.",
+                        "Используйте допустимые значения пола животного - самец/male или самка/female",
+                        e.getMessage()
+                );
+            }
         }
     }
+
 }

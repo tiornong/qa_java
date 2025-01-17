@@ -1,35 +1,21 @@
 package LionTest;
 
+import Constants.Constants;
 import com.example.Feline;
 import com.example.Lion;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.mockito.Mockito;
 
-
-@RunWith(Parameterized.class)
 public class GetKittensTest {
-
-    String sex;
-
-    public GetKittensTest(String sex) {
-        this.sex = sex;
-    }
-
-    @Parameterized.Parameters
-    public static Object[][] testData() {
-        return new Object[][]{
-                {"Male"},
-                {"Female"},
-        };
-    }
 
     @Test
     public void getKittensTest() throws Exception {
-        Feline feline = new Feline();
-        Lion lion = new Lion(sex, feline);
+        Feline felineMock = Mockito.mock(Feline.class);
+        Mockito.when(felineMock.getKittens()).thenReturn(1);
+
+        Lion lion = new Lion(Constants.DEFAULT_TEST_SEX, felineMock);
         Assert.assertEquals(1, lion.getKittens());
     }
 }
