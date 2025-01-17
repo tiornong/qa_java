@@ -5,6 +5,7 @@ import com.example.LionAlex;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class RemoveFriendTest {
 
@@ -15,8 +16,8 @@ public class RemoveFriendTest {
 
     @Before
     public void setUp() throws Exception {
-        Feline feline = new Feline();
-        lionAlex = new LionAlex(feline);
+        Feline felineMock = Mockito.mock(Feline.class);
+        lionAlex = new LionAlex(felineMock);
     }
 
     @Test
