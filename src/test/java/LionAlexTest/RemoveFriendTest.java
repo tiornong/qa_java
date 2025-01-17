@@ -2,10 +2,14 @@ package LionAlexTest;
 
 import com.example.Feline;
 import com.example.LionAlex;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.List;
+
 
 public class RemoveFriendTest {
 
@@ -25,14 +29,28 @@ public class RemoveFriendTest {
         try {
             lionAlex.removeFriend(defaultFriend);
         } catch (Exception e) {
-            Assert.assertEquals(String.format("Алекс никогда не перестанет дружить с %s!", defaultFriend), e.getMessage());
+            Assert.assertEquals("Получено некорректное сообщение об ошибке",
+                    String.format("Алекс никогда не перестанет дружить с %s!", defaultFriend),
+                    e.getMessage()
+            );
         }
     }
 
     @Test
     public void removeNewFriendTest() throws Exception {
         lionAlex.addFriend(newFriend);
+
+        Assert.assertEquals("Получен некорректный список друзей",
+                List.of("Марти", "Глория", "Мелман", newFriend),
+                lionAlex.getFriendsList()
+        );
+
         lionAlex.removeFriend(newFriend);
+
+        Assert.assertEquals("Получен некорректный список друзей",
+                List.of("Марти", "Глория", "Мелман"),
+                lionAlex.getFriendsList()
+        );
     }
 
     @Test
@@ -40,7 +58,10 @@ public class RemoveFriendTest {
         try {
             lionAlex.removeFriend(NotFriend);
         } catch (Exception e) {
-            Assert.assertEquals(String.format("Алекс и так не дружит с %s!", NotFriend), e.getMessage());
+            Assert.assertEquals("Получено некорректное сообщение об ошибке",
+                    String.format("Алекс и так не дружит с %s!", NotFriend),
+                    e.getMessage()
+            );
         }
     }
 

@@ -6,9 +6,11 @@ import com.example.Lion;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 import org.mockito.Mockito;
 
 import java.util.List;
+
 
 public class GetFoodTest {
 
@@ -18,6 +20,11 @@ public class GetFoodTest {
         Mockito.when(felineMock.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
 
         Lion lion = new Lion(Constants.DEFAULT_TEST_SEX, felineMock);
-        Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
+
+        Assert.assertEquals("Получен некорректный список продуктов питания",
+                List.of("Животные", "Птицы", "Рыба"),
+                lion.getFood()
+        );
     }
+
 }

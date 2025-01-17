@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
 import org.mockito.Mockito;
 
 
@@ -53,10 +54,11 @@ public class LionConstructorTest {
         if (isValid) {
             try {
                 Lion lion = new Lion(sex, felineMock);
-                Assert.assertNotNull(lion);
+                Assert.assertNotNull("Объект не создался!", lion);
             } catch (Exception e) {
                 Assert.fail(e.getMessage());
             }
+
         // Если не валиден, то проверяем, что вызвалась соотв. ошибка
         } else {
             try {

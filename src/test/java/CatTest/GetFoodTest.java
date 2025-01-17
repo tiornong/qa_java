@@ -19,7 +19,10 @@ public class GetFoodTest {
         Mockito.when(felineMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
 
         Cat cat = new Cat(felineMock);
-        assertEquals(List.of("Животные", "Птицы", "Рыба"), cat.getFood());
+        assertEquals("Возвращен некорректный список пищи",
+                List.of("Животные", "Птицы", "Рыба"),
+                cat.getFood()
+        );
     }
 
 }

@@ -1,9 +1,9 @@
 package FelineTest;
 
 import com.example.Feline;
+
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 
 public class GetKittensTest {
@@ -11,13 +11,21 @@ public class GetKittensTest {
     @Test
     public void getKittensNoParametersTest() {
         Feline feline = new Feline();
-        Feline felineSpy = Mockito.spy(feline);
-        Assert.assertEquals(1, felineSpy.getKittens());
+
+        Assert.assertEquals("Возвращено некорректное количество детёнышей",
+                1,
+                feline.getKittens()
+        );
     }
 
     @Test
     public void getKittensWithParametersTest() {
         Feline feline = new Feline();
-        Assert.assertEquals(5, feline.getKittens(5));
+
+        Assert.assertEquals("Возвращено некорректное количество детёнышей",
+                5,
+                feline.getKittens(5)
+        );
     }
+
 }

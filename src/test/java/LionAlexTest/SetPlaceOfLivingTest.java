@@ -2,9 +2,11 @@ package LionAlexTest;
 
 import com.example.Feline;
 import com.example.LionAlex;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+
 
 public class SetPlaceOfLivingTest {
 
@@ -14,7 +16,11 @@ public class SetPlaceOfLivingTest {
         LionAlex lionAlex = new LionAlex(felineMock);
 
         lionAlex.setPlaceOfLiving("Кремль");
-        Assert.assertEquals("Кремль", lionAlex.getPlaceOfLiving());
+
+        Assert.assertEquals("Возвращен некорректный список друзей",
+                "Кремль",
+                lionAlex.getPlaceOfLiving()
+        );
     }
 
 }

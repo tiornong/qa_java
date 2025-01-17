@@ -2,11 +2,14 @@ package LionTest;
 
 import com.example.Feline;
 import com.example.Lion;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
 import org.mockito.Mockito;
+
 
 @RunWith(Parameterized.class)
 public class DoesHaveManeTest {
@@ -32,7 +35,12 @@ public class DoesHaveManeTest {
     @Test
     public void doesHaveManeTest() throws Exception {
         Feline felineMock = Mockito.mock(Feline.class);
+
         Lion lion = new Lion(sex, felineMock);
-        Assert.assertEquals(mane, lion.doesHaveMane());
+
+        Assert.assertEquals("Получены некорректные данные о гриве",
+                mane,
+                lion.doesHaveMane()
+        );
     }
 }

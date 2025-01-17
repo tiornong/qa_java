@@ -6,7 +6,9 @@ import com.example.Lion;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 import org.mockito.Mockito;
+
 
 public class GetKittensTest {
 
@@ -16,6 +18,11 @@ public class GetKittensTest {
         Mockito.when(felineMock.getKittens()).thenReturn(1);
 
         Lion lion = new Lion(Constants.DEFAULT_TEST_SEX, felineMock);
-        Assert.assertEquals(1, lion.getKittens());
+
+        Assert.assertEquals("Получено некорректное количество детёнышей",
+                1,
+                lion.getKittens()
+        );
     }
+
 }
