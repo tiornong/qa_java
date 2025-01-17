@@ -2,16 +2,15 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class LionAlex extends Lion {
 
-    private final Set<String> startFriends = Set.of("Марти", "Глория", "Мелман");
+    private final List<String> startFriends = List.of("Марти", "Глория", "Мелман");
     private final List<String> friendsList = new ArrayList<>(startFriends);
     private String placeOfLiving = "Нью-Йоркский Зоопарк";
 
-    LionAlex(Feline feline) throws Exception {
-        super("Cамец", feline);
+    public LionAlex(Feline feline) throws Exception {
+        super("Самец", feline);
     }
 
     @Override
@@ -30,6 +29,9 @@ public class LionAlex extends Lion {
     public void removeFriend(String friend) throws Exception{
         if (startFriends.contains(friend)){
             throw new Exception(String.format("Алекс никогда не перестанет дружить с %s!", friend));
+        }
+        if (!friendsList.contains(friend)){
+            throw new Exception(String.format("Алекс и так не дружит с %s!", friend));
         }
         friendsList.remove(friend);
     }
