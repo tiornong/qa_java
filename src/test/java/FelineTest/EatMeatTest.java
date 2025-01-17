@@ -10,7 +10,7 @@ public class EatMeatTest {
 
     @Test
     public void eatMeatTest() throws Exception {
-        Feline feline = new Feline();  // заменить на мок?
+        Feline feline = new Feline();
         Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), feline.eatMeat());
     }
 }

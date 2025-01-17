@@ -8,7 +8,7 @@ public class GetFamilyTest {
 
     @Test
     public void getFamilyTest() {
-        Feline feline = new Feline();  // заменить на мок?
+        Feline feline = new Feline();
         Assert.assertEquals("Кошачьи", feline.getFamily());
     }
 }
